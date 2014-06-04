@@ -1,0 +1,30 @@
+<h3>ATMs</h3>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Accept deposit?</th>
+        <th>Is mini?</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" ng-model="atm.name" /></td>
+        <td><input type="text" ng-model="atm.address" /></td>
+        <td><input type="checkbox" ng-model="atm.acceptDeposits" /></td>
+        <td><input type="checkbox" ng-model="atm.isMini"/></td>
+        <td><input type="Button" value="Add" ng-click="addItem(atm)" /> </td>
+      </tr>
+      <tr ng-repeat="atm in atms">
+        <td><input type="text" ng-model="atm.name"  ng-change="editItem(atm)" /></td>
+        <td><input type="text" ng-model="atm.address" ng-change="editItem(atm)" /></td>
+        <td><input type="checkbox" ng-model="atm.acceptDeposits" ng-change="editItem(atm)" /></td>
+        <td><input type="checkbox" ng-model="atm.isMini" ng-change="editItem(atm)" /></td>
+        <td><input type="Button" value="  X  "  ng-click="deleteItem(atm._id,$index)"/></td>
+      </tr>
+    <tbody>
+  </table>
+</div>
