@@ -24,6 +24,9 @@ fs.readdirSync(modelsPath).forEach(function (file) {
   }
 });
 
+// Populate empty DB with states data
+require('./lib/config/statedata');
+
 // Setup Express
 var app = express();
 require('./lib/config/express')(app);
