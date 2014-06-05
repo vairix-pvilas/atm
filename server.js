@@ -3,6 +3,7 @@
 var express = require('express'),
     path = require('path'),
     fs = require('fs'),
+    namespace = require('express-namespace'),
     mongoose = require('mongoose');
 
 /**
@@ -22,9 +23,6 @@ fs.readdirSync(modelsPath).forEach(function (file) {
     require(modelsPath + '/' + file);
   }
 });
-
-// Populate empty DB with sample data
-require('./lib/config/dummydata');
 
 // Setup Express
 var app = express();
