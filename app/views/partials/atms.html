@@ -2,12 +2,15 @@
 <form class="form"  role="form">
   <div class="form-group">
     <label class="sr-only" for="InputName">Name</label>
-    <input type="text" ng-model="atm.name"  class="form-control" id="InputName" placeholder="Name" >
+    <input type="text" ng-model="atm.name" class="form-control" id="InputName" placeholder="Name" >
   </div>
   <div class="form-group">
     <label class="sr-only"  for="InputAddress">Address</label>
     <input type="text" ng-model="atm.address"  class="form-control" id="InputAddress" placeholder="Address" >
   </div>
+    <select class="form-control" ng-model="atm.state_id" ng-options="state_id.name for state_id in states" >
+    <option value="" >Choose state</option>
+  </select>
   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="atm.acceptDeposits" > Accept deposit?
@@ -22,24 +25,35 @@
   <button type="submit" class="btn btn-default"  ng-click="editItem()" ng-disabled="selectedAtm < 0" >Edit</button>
 </form>
 
+<br>
 <h3>List ATMs</h3>
 <table class="table  table-bordered table-striped table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Accept deposit?</th>
-      <th>Is mini?</th>
-      <th></th>
+      <th class="text-center" >Name</th>
+      <th class="text-center" >Address</th>
+      <th class="text-center" >State</th>
+      <th class="text-center" >Deposit?</th>
+      <th class="text-center" >Is mini?</th>
+      <th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="atm in atms" ng-click="setSelected($index)">
+    <tr class="text-center" ng-repeat="atm in atms" ng-click="setSelected($index)">
       <td>{{atm.name}}</td>
       <td>{{atm.address}}</td>
-      <td>{{atm.acceptDeposits}}</td>
-      <td>{{atm.isMini}}</td>
-      <td><button type="submit" class="btn btn-default"  ng-click="deleteItem(atm._id,$index)" >x</button></td>
+      <td>{{atm.state_id.name}}</td>
+      <td>
+        <span ng-class="{'glyphicon glyphicon-ok': atm.acceptDeposits,'glyphicon glyphicon-remove': !atm.acceptDeposits }" >
+        </td>
+      <td>
+        <span ng-class="{'glyphicon glyphicon-ok': atm.isMini,'glyphicon glyphicon-remove': !atm.isMini }" >
+      </td>
+      <td>
+        <button type="submit" class="btn btn-default"  ng-click="deleteItem(atm._id,$index)" >
+          <span class="glyphicon glyphicon-trash" >
+        </button>
+      </td>
     </tr>
   <tbody>
 </table>

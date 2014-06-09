@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('atmApp')
-  .controller('AtmCtrl', function($scope, Atm) {
+  .controller('AtmCtrl', function($scope, Atm, State) {
     /* Auxiliar functions */
     function clearAtm(){
       $scope.selectedAtm = -1;
@@ -9,7 +9,7 @@ angular.module('atmApp')
     }
 
     /* Dom functions */
-    $scope.selectedAtm = -1;
+    clearAtm();
 
     $scope.setSelected = function($index) {
       $scope.selectedAtm =  $index;
@@ -18,6 +18,7 @@ angular.module('atmApp')
 
     /* ATM CRUD */
     $scope.atms = Atm.query();
+    $scope.states = State.query();
 
     $scope.addItem = function() {
       $scope.atms.push(Atm.save({},$scope.atm));
