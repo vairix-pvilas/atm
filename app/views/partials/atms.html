@@ -8,10 +8,15 @@
     <label class="sr-only"  for="InputAddress">Address</label>
     <input type="text" ng-model="atm.address"  class="form-control" id="InputAddress" placeholder="Address" >
   </div>
-    <select class="form-control" ng-model="atm.state_id" ng-options="state_id.name for state_id in states" >
+    <select class="form-control" ng-model="atm.state_id" ng-options="state_id.name for state_id in states track by state_id._id" >
+      <option value="" >Choose state</option>
+    </select>
+
+ <!--  <select class="form-control" ng-model="atm.state_id">
     <option value="" >Choose state</option>
-  </select>
-  <div class="checkbox">
+    <option ng-repeat="state_id in states" value="state_id">{{state_id.name}}</option>
+  </select> -->
+   <div class="checkbox">
     <label>
       <input type="checkbox" ng-model="atm.acceptDeposits" > Accept deposit?
     </label>
