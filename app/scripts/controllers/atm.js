@@ -14,7 +14,7 @@ angular.module('atmApp')
     $scope.setSelected = function($index) {
       $scope.selectedAtm =  $index;
       $scope.atm = angular.copy($scope.atms[$index]);
-    }
+    };
 
     /* ATM CRUD */
     $scope.atms = Atm.query();
@@ -26,8 +26,7 @@ angular.module('atmApp')
     };
 
     $scope.editItem = function() {
-      $scope.atms[ $scope.selectedAtm] = $scope.atm;
-      Atm.save({id: $scope.atm._id},$scope.atm);
+      $scope.atms[ $scope.selectedAtm] = Atm.save({id: $scope.atm._id},$scope.atm);
       clearAtm();
     };
 
